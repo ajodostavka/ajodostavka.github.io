@@ -170,6 +170,17 @@
         $('#citySelect').select2({
             placeholder: "Введіть місто...",
             minimumInputLength: 2,
+            language: {
+                inputTooShort: function() {
+                    return "Почніть вводити хоча б 2 літери"; // Или по-русски: "Введите минимум 2 буквы"
+                },
+                searching: function() {
+                    return "Шукаємо..."; // "Ищем..."
+                },
+                noResults: function() {
+                    return "Нічого не знайдено"; // "Ничего не найдено"
+                }
+            },
             ajax: {
                 url: WORKER_URL,
                 type: 'POST',
@@ -185,6 +196,17 @@
                 }
             }
         });
+        // ... твой код для города (citySelect) закончился тут ...
+    
+    // --- ВСТАВЛЯЙ СЮДА ---
+    $('#branchSelect').select2({
+        placeholder: "Спочатку оберіть місто",
+        disabled: true,  // <--- ВОТ ГЛАВНОЕ: Оно останется выключенным!
+        width: '100%'    // Чтобы ширина была точно такая же, как у города
+    });
+    // ---------------------
+
+    // 2. ВЫБОР ОТДЕЛЕНИЯ (дальше идет твой старый код...)
 
         // 2. ВЫБОР ОТДЕЛЕНИЯ
         $('#citySelect').on('select2:select', function (e) {
